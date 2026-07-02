@@ -14,11 +14,13 @@ import (
 	"time"
 )
 
-var palette = []color.Color{color.Black, color.RGBA{0x00, 0xFF, 0x00, 0xFF}}
+var palette = []color.Color{color.Black, color.RGBA{0xFF, 0x00, 0x00, 0xFF}, color.RGBA{0x00, 0xFF, 0x00, 0xFF}, color.RGBA{0x00, 0x00, 0xFF, 0xFF}}
 
 const (
 	backgroundIndex = 0 // first color in palette
-	foregroundIndex = 1 // next color in palette
+	redIndex        = 1 // next color in palette,
+	greenIndex      = 2 // third color in palette
+	blueIndex       = 3 // fourth color in palette
 )
 
 func main() {
@@ -52,14 +54,16 @@ func lissajous(out io.Writer) {
 	freq := rand.Float64() * 3 // relative frequency of y oscillator
 	anim := gif.GIF{LoopCount: nframes}
 	phase := 0.0 // phase difference
+
 	for i := 0; i < nframes; i++ {
+		colorIndex := uint8(redIndex + rand.Intn(blueIndex-redIndex+1))
 		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
 		img := image.NewPaletted(rect, palette)
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
 			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5),
-				foregroundIndex)
+				colorIndex)
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
