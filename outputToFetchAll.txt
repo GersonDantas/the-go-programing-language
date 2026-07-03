@@ -1,0 +1,19 @@
+0.15s  810300 https://www.uol.com.br
+0.21s     559 https://example.com
+0.96s   64185 https://golang.org
+1.16s  280098 http://alexa.com
+----------------------------
+0.09s  810300 https://www.uol.com.br
+0.19s     559 https://example.com
+1.16s   64185 https://golang.org
+----------------------------
+0.19s     559 https://example.com
+0.38s  810300 https://www.uol.com.br
+0.94s  280088 http://alexa.com
+0.99s   64185 https://golang.org
+----------------------------
+Get "https://www.uoli.com.br": dial tcp: lookup www.uoli.com.br: no such host
+0.20s     559 https://example.com
+1.09s   64185 https://golang.org
+1.17s  280078 http://alexa.com
+----------------------------
